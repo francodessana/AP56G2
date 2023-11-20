@@ -4,23 +4,27 @@ import ListaTareas from './components/ListaTareas'
 import Footer from './UI/Footer'
 import Nav from './UI/Nav'
 function App() {
-  
+
   return (
     <>
-      <Grid container>
+      <Grid container textAlign={'center'}>
         <Grid item xs={12}>
-          <Nav/>
+          <Nav />
+        </Grid>
+
+        <Grid m={'25px auto'}>
           <ListaTareas />
         </Grid>
+
         <Grid item xs={12}>
           <Footer />
         </Grid>
       </Grid>
-        
-      
-      
-        
-      
+
+
+
+
+
     </>
   )
 }
