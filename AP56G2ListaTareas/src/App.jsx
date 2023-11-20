@@ -20,11 +20,6 @@ function App() {
           <Footer />
         </Grid>
       </Grid>
-
-
-
-
-
     </>
   )
 }

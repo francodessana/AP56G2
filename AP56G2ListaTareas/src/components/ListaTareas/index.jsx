@@ -1,4 +1,4 @@
-import { Button, List, TextField } from "@mui/material";
+import { Button, TextField } from "@mui/material";
 import "./styles.css";
 import { useState } from "react";
 import TareaItem from "../TareaItem";
