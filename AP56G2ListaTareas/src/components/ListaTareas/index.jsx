@@ -6,7 +6,7 @@ import Formulario from "../Formulario";
 export default function ListaTareas() {
   const [lista, setLista] = useState([]);
   const [textoTarea, setTextoTarea] = useState("");
-  const [idTarea, setIdTarea] = useState(1);
+  const [idTarea, setIdTarea] = useState(lista.length);
   const [cambioLista, setCambioLista] = useState(false);
 
   useEffect(() => {
@@ -43,13 +43,13 @@ export default function ListaTareas() {
       alert("Por favor, ingresa una tarea");
     } else {
       const nuevaTarea = {
-        id: idTarea,
+        id: lista.length,
         textoTarea: textoTarea,
         completa: false,
       };
       setLista([...lista, nuevaTarea]);
       setTextoTarea("");
-      setIdTarea(idTarea + 1);
+      setIdTarea(lista.length + 1);
       setCambioLista(true);
     }
   };

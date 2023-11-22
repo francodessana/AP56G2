@@ -1,8 +1,7 @@
 .logo{
-    width: 100px;
+    width: 200px;
     height: 75px;
-    padding: 10px;
     border-radius: 75px;
-
+    flex-direction: end;
     /* border-radius: 45px; */
 }

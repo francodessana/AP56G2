@@ -24,7 +24,9 @@ export default function TareaItem({
       </IconButton>
       <ListItemText
         primary={tareaTexto}
-        style={{ textDecoration: tareaCompletada ? "line-through" : "none" }}
+        style={{
+          textDecoration: tareaCompletada ? "line-through" : "none",
+        }}
       />
       <IconButton onClick={handleBorrarTarea}>
         <DeleteIcon style={{ color: "red" }} />

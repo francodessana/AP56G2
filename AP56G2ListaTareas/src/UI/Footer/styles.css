@@ -2,13 +2,13 @@
     font-size: 1.2rem;
     color: white;
     background-color: #1976d2;
-    height: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     margin-top: 50px;
     padding: 10px;
+    width: 100%;
 }
 .github{
     display: flex;
@@ -21,13 +21,18 @@
 .imgGit{
     width: 60px;
     height: 60px;
-    padding: 10px;
     margin: 10px;
 }
+.contenedor-redes {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
 .redes{
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+
     align-items: center;
 }
 .redes img{

@@ -7,25 +7,27 @@ import MenuIcon from "@mui/icons-material/Menu";
 import "./styles.css";
 
 export default function ButtonAppBar() {
-    return (
-        <Box sx={{ flexGrow: 1 }}>
-            <AppBar position="static">
-                <Toolbar>
-                    <IconButton
-                        size="large"
-                        edge="start"
-                        color="inherit"
-                        aria-label="menu"
-                        sx={{ mr: 2 }}
-                    >
-                        <MenuIcon />
-                    </IconButton>
-                    <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                        Argentina Programa Desarrollo en React JS
-                    </Typography>
-                    <img className="logo" src="https://www.argentina.gob.ar/sites/default/files/untitled-3-01_2.png" alt="logo"/>
-                </Toolbar>
-            </AppBar>
-        </Box>
-    );
+  return (
+    <Box>
+      <AppBar
+        position="static"
+        sx={{ display: "flex", alignItems: "center" }}
+      >
+        <Toolbar>
+          <Typography
+            variant="h6"
+            component="p"
+            sx={{ alignItems: "center" }}
+          >
+            Argentina Programa Desarrollo en React JS
+          </Typography>
+          <img
+            className="logo"
+            src="https://www.argentina.gob.ar/sites/default/files/untitled-3-01_2.png"
+            alt="logo"
+          />
+        </Toolbar>
+      </AppBar>
+    </Box>
+  );
 }
