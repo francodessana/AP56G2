@@ -10,13 +10,21 @@ export default function ListaTareas() {
   const [cambioLista, setCambioLista] = useState(false);
 
   useEffect(() => {
+    const storedLista = localStorage.getItem("listaTareas");
+    if (storedLista) {
+      setLista(JSON.parse(storedLista));
+    }
+  }, []);
+
+  useEffect(() => {
     if (cambioLista) {
+      localStorage.setItem("listaTareas", JSON.stringify(lista));
       setTimeout(() => {
         console.log("CAMBIO");
         setCambioLista(false);
       }, 2000);
     }
-  }, [cambioLista]);
+  }, [cambioLista, lista]);
 
   const onChangeTarea = (event) => {
     setTextoTarea(event.target.value);
