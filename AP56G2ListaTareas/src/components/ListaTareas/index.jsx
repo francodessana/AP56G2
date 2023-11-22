@@ -12,9 +12,9 @@ export default function ListaTareas() {
   useEffect(() => {
     if (cambioLista) {
       setTimeout(() => {
-        console.log("CAMBIO")
+        console.log("CAMBIO");
         setCambioLista(false);
-      },2000); 
+      }, 2000);
     }
   }, [cambioLista]);
 
@@ -46,6 +46,18 @@ export default function ListaTareas() {
     }
   };
 
+  const onKeyPressAgregar = (e) => {
+    if (e.key === "Enter") {
+      onClickAgregar();
+    }
+  };
+
+  const borrarTarea = (id) => {
+    const nuevaListaTareas = lista.filter((tarea) => tarea.id != id);
+    setLista(nuevaListaTareas);
+    setCambioLista(true);
+  };
+
   const onClickEliminar = () => {
     const tareasCompletas = lista.filter((tarea) => tarea.completa);
 
@@ -60,9 +72,9 @@ export default function ListaTareas() {
 
   return (
     <div>
-      
-      <h1>Lista de Tareas</h1> 
-      {cambioLista && <p>Se modificó la lista.</p>}  {/* Si cambioLista es true, se muestra el mensaje. */}
+      <h1>Lista de Tareas</h1>
+      {cambioLista && <p>Se modificó la lista.</p>}{" "}
+      {/* Si cambioLista es true, se muestra el mensaje. */}
       <ul>
         {lista.map((tarea) => {
           return (
@@ -71,12 +83,20 @@ export default function ListaTareas() {
               tareaTexto={tarea.textoTarea}
               tareaCompletada={tarea.completa}
               completa={() => setEstadoTarea(tarea.id)}
+              borrarTarea={borrarTarea}
+              id={tarea.id}
             ></TareaItem>
           );
         })}
       </ul>
-      
-      <Formulario textoTarea={textoTarea} onChangeTarea={onChangeTarea} onClickAgregar={onClickAgregar} onClickEliminar={onClickEliminar} lista={lista}/>
+      <Formulario
+        textoTarea={textoTarea}
+        onChangeTarea={onChangeTarea}
+        onClickAgregar={onClickAgregar}
+        onKeyPressAgregar={onKeyPressAgregar}
+        onClickEliminar={onClickEliminar}
+        lista={lista}
+      />
       {/* <TextField
         type="text"
         value={textoTarea}
@@ -98,7 +118,6 @@ export default function ListaTareas() {
         onClick={onClickEliminar}>
         Eliminar
       </Button> : <Button variant="contained" onClick={onClickEliminar}>Eliminar</Button>}   */}
-      
     </div>
   );
 }

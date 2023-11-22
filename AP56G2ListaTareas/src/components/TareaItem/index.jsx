@@ -1,14 +1,34 @@
 import { CheckBox, CheckBoxOutlineBlank } from "@mui/icons-material";
+import DeleteIcon from "@mui/icons-material/Delete";
 import { IconButton, ListItem, ListItemText } from "@mui/material";
 
+export default function TareaItem({
+  id,
+  tareaTexto,
+  tareaCompletada,
+  completa,
+  borrarTarea,
+}) {
+  const handleBorrarTarea = () => {
+    borrarTarea(id);
+  };
 
-export default function TareaItem({ tareaTexto, tareaCompletada, completa }) {
   return (
     <ListItem>
       <IconButton onClick={completa}>
-        {tareaCompletada ? <CheckBox color="success" /> : <CheckBoxOutlineBlank  />}
+        {tareaCompletada ? (
+          <CheckBox color="success" />
+        ) : (
+          <CheckBoxOutlineBlank />
+        )}
       </IconButton>
-      <ListItemText primary={tareaTexto} />
+      <ListItemText
+        primary={tareaTexto}
+        style={{ textDecoration: tareaCompletada ? "line-through" : "none" }}
+      />
+      <IconButton onClick={handleBorrarTarea}>
+        <DeleteIcon style={{ color: "red" }} />
+      </IconButton>
     </ListItem>
   );
 }
