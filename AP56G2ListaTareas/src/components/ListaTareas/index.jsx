@@ -1,7 +1,8 @@
-import { Button, TextField } from "@mui/material";
+
 import "./styles.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TareaItem from "../TareaItem";
+import Formulario from "../Formulario"
 
 //tarea es componente hijo
 //formulario contiene el boton y el input
@@ -10,7 +11,13 @@ export default function ListaTareas() {
   const [lista, setLista] = useState([]);
   const [textoTarea, setTextoTarea] = useState("");
   const [idTarea, setIdTarea] = useState(1);
+  // const [cambioLista, setCambioLista] = useState(false);   para el useEffect
 
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setCambioLista(false);
+  //   }, 5000);
+  // })
   const onChangeTarea = (event) => {
     setTextoTarea(event.target.value);
   };
@@ -40,8 +47,12 @@ export default function ListaTareas() {
       setLista([...lista, nuevaTarea]);
       setTextoTarea("");
       setIdTarea(idTarea + 1);
+      // setCambioLista(true); para el use effect , si se cambia el estado de la lista se vuelve a renderizar
     }
   };
+  const onClickEliminar = () => {
+    setLista([]);
+  }
 
   console.log("la lista actual es : " + lista);
   console.log("valor actual de tarea: " + textoTarea);
@@ -63,8 +74,9 @@ export default function ListaTareas() {
           );
         })}
       </ul>
-
-      <TextField
+      
+      <Formulario textoTarea={textoTarea} onChangeTarea={onChangeTarea} onClickAgregar={onClickAgregar} onClickizar={onClickEliminar} lista={lista}/>
+      {/* <TextField
         type="text"
         value={textoTarea}
         onChange={onChangeTarea}
@@ -80,6 +92,12 @@ export default function ListaTareas() {
       >
         Agregar a la lista
       </Button>
+
+      {lista[0] === "" || lista[0]== null || lista[0] == undefined ? <Button disabled variant="contained" 
+        onClick={onClickEliminar}>
+        Eliminar
+      </Button> : <Button variant="contained" onClick={onClickEliminar}>Eliminar</Button>}   */}
+      
     </div>
   );
 }
