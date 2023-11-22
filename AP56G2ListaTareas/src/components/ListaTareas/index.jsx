@@ -1,32 +1,27 @@
-
 import "./styles.css";
 import { useEffect, useState } from "react";
 import TareaItem from "../TareaItem";
-import Formulario from "../Formulario"
-
-//tarea es componente hijo
-//formulario contiene el boton y el input
+import Formulario from "../Formulario";
 
 export default function ListaTareas() {
   const [lista, setLista] = useState([]);
   const [textoTarea, setTextoTarea] = useState("");
   const [idTarea, setIdTarea] = useState(1);
-  // const [cambioLista, setCambioLista] = useState(false);   para el useEffect
+  const [cambioLista, setCambioLista] = useState(false);
 
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     setCambioLista(false);
-  //   }, 5000);
-  // })
+  useEffect(() => {
+    if (cambioLista) {
+      setTimeout(() => {
+        console.log("CAMBIO")
+        setCambioLista(false);
+      },2000); 
+    }
+  }, [cambioLista]);
+
   const onChangeTarea = (event) => {
     setTextoTarea(event.target.value);
   };
 
-  /* Controla el estado de completado de cada tarea, toma como parametro el ID de la tarea seleccionada
-     utiliza setLista para setear el nuevo estado de la lista y recibe como parametro el estado actual antes de ser modificado
-     se utiliza .map() para iterar sobre cada tarea de la lista
-     la condicion ternaria evalua si el id de la tarea es igual al proporcionado a setEstadoTarea, si es asi cambia el valor de la propiedad "completa"
-     sino crea una tarea nueva identica a la anterior  */
   const setEstadoTarea = (id) => {
     setLista((prevLista) =>
       prevLista.map((tarea) =>
@@ -47,21 +42,27 @@ export default function ListaTareas() {
       setLista([...lista, nuevaTarea]);
       setTextoTarea("");
       setIdTarea(idTarea + 1);
-      // setCambioLista(true); para el use effect , si se cambia el estado de la lista se vuelve a renderizar
+      setCambioLista(true);
     }
   };
-  const onClickEliminar = () => {
-    setLista([]);
-  }
 
-  console.log("la lista actual es : " + lista);
-  console.log("valor actual de tarea: " + textoTarea);
-  console.log(lista);
+  const onClickEliminar = () => {
+    const tareasCompletas = lista.filter((tarea) => tarea.completa);
+
+    if (tareasCompletas.length === 0) {
+      alert("No hay tareas completadas para eliminar.");
+    } else {
+      const tareasIncompletas = lista.filter((tarea) => !tarea.completa);
+      setLista(tareasIncompletas);
+      setCambioLista(true);
+    }
+  };
 
   return (
     <div>
-      <h1>Lista de Tareas</h1>
-
+      
+      <h1>Lista de Tareas</h1> 
+      {cambioLista && <p>Se modificó la lista.</p>}  {/* Si cambioLista es true, se muestra el mensaje. */}
       <ul>
         {lista.map((tarea) => {
           return (
@@ -75,7 +76,7 @@ export default function ListaTareas() {
         })}
       </ul>
       
-      <Formulario textoTarea={textoTarea} onChangeTarea={onChangeTarea} onClickAgregar={onClickAgregar} onClickizar={onClickEliminar} lista={lista}/>
+      <Formulario textoTarea={textoTarea} onChangeTarea={onChangeTarea} onClickAgregar={onClickAgregar} onClickEliminar={onClickEliminar} lista={lista}/>
       {/* <TextField
         type="text"
         value={textoTarea}
