@@ -75,6 +75,11 @@ export default function ListaTareas() {
       const tareasIncompletas = lista.filter((tarea) => !tarea.completa);
       setLista(tareasIncompletas);
       setCambioLista(true);
+      const shouldDelete = window.confirm('¿Seguro que quieres eliminar las tareas completadas?');
+
+      if (shouldDelete) {
+        tareasIncompletas();
+      }
     }
   };
 
