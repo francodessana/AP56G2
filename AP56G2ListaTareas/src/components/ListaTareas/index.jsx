@@ -8,7 +8,7 @@ export default function ListaTareas() {
   const [textoTarea, setTextoTarea] = useState("");
   const [idTarea, setIdTarea] = useState(lista.length);
   const [cambioLista, setCambioLista] = useState(false);
-
+  const [mensajes, setMensajes] = useState("");
   useEffect(() => {
     const storedLista = localStorage.getItem("listaTareas");
     if (storedLista) {
@@ -40,7 +40,10 @@ export default function ListaTareas() {
 
   const onClickAgregar = () => {
     if (textoTarea === "") {
-      alert("Por favor, ingresa una tarea");
+      setMensajes("Por favor, ingresa una tarea");
+      setTimeout(() => {
+        setMensajes("");
+      } , 2000)
     } else {
       const nuevaTarea = {
         id: lista.length,
@@ -70,7 +73,10 @@ export default function ListaTareas() {
     const tareasCompletas = lista.filter((tarea) => tarea.completa);
 
     if (tareasCompletas.length === 0) {
-      alert("No hay tareas completadas para eliminar.");
+      setMensajes("No hay tareas completadas para eliminar");
+      setTimeout(() => {
+        setMensajes("");
+      } , 2000)
     } else {
       const tareasIncompletas = lista.filter((tarea) => !tarea.completa);
       const shouldDelete = window.confirm(
@@ -87,6 +93,7 @@ export default function ListaTareas() {
   return (
     <div>
       <h1>Lista de Tareas</h1>
+      <div className="Mensajes"><h2>{mensajes}</h2></div>
       {cambioLista && <p>Se modificó la lista.</p>}{" "}
       {/* Si cambioLista es true, se muestra el mensaje. */}
       <ul>
@@ -111,27 +118,6 @@ export default function ListaTareas() {
         onClickEliminar={onClickEliminar}
         lista={lista}
       />
-      {/* <TextField
-        type="text"
-        value={textoTarea}
-        onChange={onChangeTarea}
-        placeholder="Ingresa una nueva tarea"
-        margin="normal"
-      ></TextField>
-
-      <br />
-
-      <Button
-        variant="contained"
-        onClick={onClickAgregar}
-      >
-        Agregar a la lista
-      </Button>
-
-      {lista[0] === "" || lista[0]== null || lista[0] == undefined ? <Button disabled variant="contained" 
-        onClick={onClickEliminar}>
-        Eliminar
-      </Button> : <Button variant="contained" onClick={onClickEliminar}>Eliminar</Button>}   */}
     </div>
   );
 }
