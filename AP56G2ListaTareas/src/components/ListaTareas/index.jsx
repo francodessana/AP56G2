@@ -20,7 +20,6 @@ export default function ListaTareas() {
     if (cambioLista) {
       localStorage.setItem("listaTareas", JSON.stringify(lista));
       setTimeout(() => {
-        console.log("CAMBIO");
         setCambioLista(false);
       }, 2000);
     }
@@ -43,7 +42,7 @@ export default function ListaTareas() {
       setMensajes("Por favor, ingresa una tarea");
       setTimeout(() => {
         setMensajes("");
-      } , 2000)
+      }, 2000);
     } else {
       const nuevaTarea = {
         id: lista.length,
@@ -76,7 +75,7 @@ export default function ListaTareas() {
       setMensajes("No hay tareas completadas para eliminar");
       setTimeout(() => {
         setMensajes("");
-      } , 2000)
+      }, 2000);
     } else {
       const tareasIncompletas = lista.filter((tarea) => !tarea.completa);
       const shouldDelete = window.confirm(
@@ -93,7 +92,9 @@ export default function ListaTareas() {
   return (
     <div>
       <h1>Lista de Tareas</h1>
-      <div className="Mensajes"><h2>{mensajes}</h2></div>
+      <div className="Mensajes">
+        <h2>{mensajes}</h2>
+      </div>
       {cambioLista && <p>Se modificó la lista.</p>}{" "}
       {/* Si cambioLista es true, se muestra el mensaje. */}
       <ul>
@@ -106,7 +107,7 @@ export default function ListaTareas() {
               estadoTarea={() => setEstadoTarea(tarea.id)}
               borrarTarea={borrarTarea}
               id={tarea.id}
-            ></TareaItem>
+            />
           );
         })}
       </ul>

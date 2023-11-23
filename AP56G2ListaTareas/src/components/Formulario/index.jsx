@@ -32,7 +32,7 @@ export default function Formulario({
               border: "1px solid #9C8657",
               borderRadius: "10px",
             }}
-          ></TextField>
+          />
         </Grid>
 
         <Grid
@@ -59,24 +59,16 @@ export default function Formulario({
           xs={12}
           sm={5.5}
         >
-          {lista[0] === "" || lista[0] == null || lista[0] == undefined ? (
-            <Button
-              disabled
-              variant="contained"
-              onClick={onClickEliminar}
-              sx={{ padding: "15px 40px", fontWeight: "bold", fontSize: "1em" }}
-            >
-              Eliminar completas
-            </Button>
-          ) : (
-            <Button
-              variant="contained"
-              onClick={onClickEliminar}
-              sx={{ padding: "15px 40px", fontWeight: "bold", fontSize: "1em" }}
-            >
-              Eliminar completas
-            </Button>
-          )}
+          <Button
+            disabled={
+              lista[0] === "" || lista[0] == null || lista[0] == undefined
+            }
+            variant="contained"
+            onClick={onClickEliminar}
+            sx={{ padding: "15px 40px", fontWeight: "bold", fontSize: "1em" }}
+          >
+            Eliminar completas
+          </Button>
         </Grid>
       </Grid>
     </div>
