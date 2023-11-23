@@ -1,4 +1,3 @@
-import { Padding } from "@mui/icons-material";
 import { Button, Grid, TextField } from "@mui/material";
 export default function Formulario({
   textoTarea,

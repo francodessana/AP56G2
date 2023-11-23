@@ -6,7 +6,7 @@ export default function TareaItem({
   id,
   tareaTexto,
   tareaCompletada,
-  completa,
+  estadoTarea,
   borrarTarea,
 }) {
   const handleBorrarTarea = () => {
@@ -15,7 +15,7 @@ export default function TareaItem({
 
   return (
     <ListItem>
-      <IconButton onClick={completa}>
+      <IconButton onClick={estadoTarea}>
         {tareaCompletada ? (
           <CheckBox color="success" />
         ) : (

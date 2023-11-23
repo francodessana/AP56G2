@@ -73,12 +73,13 @@ export default function ListaTareas() {
       alert("No hay tareas completadas para eliminar.");
     } else {
       const tareasIncompletas = lista.filter((tarea) => !tarea.completa);
-      setLista(tareasIncompletas);
-      setCambioLista(true);
-      const shouldDelete = window.confirm('¿Seguro que quieres eliminar las tareas completadas?');
+      const shouldDelete = window.confirm(
+        "¿Seguro que quieres eliminar las tareas completadas?"
+      );
 
       if (shouldDelete) {
-        tareasIncompletas();
+        setLista(tareasIncompletas);
+        setCambioLista(true);
       }
     }
   };
@@ -95,7 +96,7 @@ export default function ListaTareas() {
               key={tarea.id}
               tareaTexto={tarea.textoTarea}
               tareaCompletada={tarea.completa}
-              completa={() => setEstadoTarea(tarea.id)}
+              estadoTarea={() => setEstadoTarea(tarea.id)}
               borrarTarea={borrarTarea}
               id={tarea.id}
             ></TareaItem>
