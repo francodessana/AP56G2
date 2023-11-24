@@ -1,7 +1,7 @@
 import "./styles.css";
 import { useEffect, useState } from "react";
-import TareaItem from "../TareaItem";
-import Formulario from "../Formulario";
+import TareaItem from "./TareaItem";
+import Formulario from "./Formulario";
 
 export default function ListaTareas() {
   const [lista, setLista] = useState([]);
