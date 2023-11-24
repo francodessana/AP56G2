@@ -60,13 +60,12 @@ export default function ListaTareas() {
   };
 
   const borrarTarea = (id) => {
-    const { lista: listaActual, setCambioLista, setLista } = tuEstado;
-    const nuevaListaTareas = listaActual.filter((tarea) => tarea.id !== id);
+    const nuevaListaTareas = lista.filter((tarea) => tarea.id != id);
     setLista(nuevaListaTareas);
     setCambioLista(true);
   };
 
-  function onClickEliminar() {
+  const onClickEliminar = () => {
     const tareasCompletas = lista.filter((tarea) => tarea.completa);
 
     if (tareasCompletas.length === 0) {
@@ -81,13 +80,13 @@ export default function ListaTareas() {
         tareasIncompletas();
       }
     }
-  }
+  };
 
   return (
     <div>
       <h1>Lista de Tareas</h1>
       {cambioLista && <p>Se modificó la lista.</p>}{" "}
-      {/* Si cambio Lista es true, se muestra el mensaje. */}
+      {/* Si cambioLista es true, se muestra el mensaje. */}
       <ul>
         {lista.map((tarea) => {
           return (
@@ -129,7 +128,7 @@ export default function ListaTareas() {
       {lista[0] === "" || lista[0]== null || lista[0] == undefined ? <Button disabled variant="contained" 
         onClick={onClickEliminar}>
         Eliminar
-      </Button> : < variant="contained" onClick={onClickEliminar}>Eliminar/>}   */}
+      </Button> : <Button variant="contained" onClick={onClickEliminar}>Eliminar</Button>}   */}
     </div>
   );
 }
